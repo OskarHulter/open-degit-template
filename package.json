@@ -1,0 +1,60 @@
+{
+  "name": "open-degit-template",
+  "version": "1.0.0",
+  "description": "A collection of public code templates, ready to degit.",
+  "keywords": [
+    "clone",
+    "degit",
+    "directory",
+    "file",
+    "folder",
+    "git",
+    "github",
+    "repository",
+    "scaffolding",
+    "template",
+    "url",
+    "gitpick"
+  ],
+  "homepage": "https://github.com/OskarHulter/open-degit-template#readme",
+  "bugs": "https://github.com/OskarHulter/open-degit-template/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Oskar Hulter",
+    "email": "oskarhulter@gmail.com",
+    "url": "https://oskarhulter.com"
+  },
+  "repository": "OskarHulter/open-degit-template",
+  "funding": "https://github.com/sponsors/OskarHulter",
+  "type": "module",
+  "packageManager": "pnpm@10.17.1",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "prepare": "bunx lefthook install",
+    "test": "tsdown && bun test tests/cli.test.ts"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@types/node": "^25.5.0",
+    "lefthook": "^2.1.4",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
+    "sort-package-json": "^3.6.1",
+    "tsdown": "^0.21.4",
+    "typescript": "^5.9.3"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
