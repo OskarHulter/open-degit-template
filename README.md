@@ -1,2 +1,200 @@
 # open-degit-template
+
 A collection of public code templates, ready to degit.
+
+## Why degit?
+
+Just copy-and-paste any GitHub, GitLab or Bitbucket URL - no editing required (shorthands work too) - to clone individual files, folders, branches, commits, raw content or even entire repositories without the .git directory.
+
+## Maintained degit alternatives
+
+- [gitpick]<https://github.com/nrjdalal/gitpick>
+- [giget]<https://github.com/unjs/giget>
+
+The original project is no longer actively maintained, so it has been surpassed by modern alternatives like gitpick and giget.
+
+Unlike other tools that force you to tweak URLs or follow strict formats to clone files, folders, branches or commits GitPick works seamlessly with any URL.
+
+## Get started
+
+Read the [official docs](https://github.com/nrjdalal/gitpick/blob/main/README.md) from gitpick, or review the copy below for your convenience.
+
+### See [Quick Usage](#-quick-usage) for to learn more
+
+```sh
+# interactive mode - browse and pick files/folders
+npx gitpick owner/repo -i
+npx gitpick https://github.com/owner/repo -i
+# clone a repo without .git
+npx gitpick owner/repo
+npx gitpick https://github.com/owner/repo
+# clone a folder aka tree
+npx gitpick owner/repo/tree/main/path/to/folder
+npx gitpick https://github.com/owner/repo/tree/main/path/to/folder
+# clone a file aka blob
+npx gitpick owner/repo/blob/main/path/to/file
+npx gitpick https://github.com/owner/repo/blob/main/path/to/file
+# clone a branch
+npx gitpick owner/repo -b canary
+npx gitpick https://github.com/owner/repo -b canary
+npx gitpick owner/repo/tree/canary
+npx gitpick https://github.com/owner/repo/tree/canary
+# clone a commit SHA
+npx gitpick owner/repo -b cc8e93
+npx gitpick https://github.com/owner/repo/commit/cc8e93
+# clone submodules
+npx gitpick owner/repo -r
+npx gitpick https://github.com/owner/repo -r
+# clone a private repo
+npx gitpick https://<token>@github.com/owner/repo
+# clone from GitLab
+npx gitpick https://gitlab.com/owner/repo
+npx gitpick https://gitlab.com/owner/repo/-/tree/main/path/to/folder
+# clone from Bitbucket
+npx gitpick https://bitbucket.org/owner/repo
+npx gitpick https://bitbucket.org/owner/repo/src/main/path/to/folder
+# dry run (preview without cloning)
+npx gitpick owner/repo --dry-run
+npx gitpick owner/repo -i --dry-run
+```
+
+---
+
+## 🚀 Quick Usage
+
+```sh
+npx gitpick <url/shorthand> [target] [options]
+```
+
+- [target] and [options] are optional, if not specified, GitPick fallbacks to the default behavior of `git clone`
+
+Examples:
+
+```sh
+npx gitpick https://github.com/owner/repo           # repo without .git
+npx gitpick owner/repo/tree/main/path/to/folder     # a folder aka tree
+npx gitpick owner/repo/blob/main/path/to/file       # a file aka blob
+
+npx gitpick <url/shorthand>                         # default git behavior
+npx gitpick <url/shorthand> [target]                # with optional target
+npx gitpick <url/shorthand> -b [branch/SHA]         # branch or commit SHA
+npx gitpick <url/shorthand> -o                      # overwrite if exists
+npx gitpick <url/shorthand> -r                      # clone submodules
+npx gitpick <url/shorthand> -w 30s                  # sync every 30 seconds
+npx gitpick <url/shorthand> --dry-run               # preview without cloning
+npx gitpick https://<token>@github.com/owner/repo   # private repository
+npx gitpick https://gitlab.com/owner/repo           # GitLab
+npx gitpick https://bitbucket.org/owner/repo        # Bitbucket
+```
+
+<img width="720" alt="Image" src="https://github.com/user-attachments/assets/ddbc41b4-bfc6-4287-bb85-eb949d723591" />
+
+---
+
+## 🔧 Options
+
+```sh
+-b, --branch       Branch/SHA to clone
+-i, --interactive  Browse and pick files/folders interactively
+-n, --dry-run      Show what would be cloned without cloning
+-o, --overwrite    Skip overwrite prompt
+-r, --recursive    Clone submodules
+-w, --watch [time] Watch the repository and sync every [time]
+                   (e.g. 1h, 30m, 15s)
+    --tree         List copied files as a tree
+-q, --quiet        Suppress all output except errors
+    --verbose      Show detailed clone information
+-h, --help         display help for command
+-v, --version      display the version number
+```
+
+---
+
+## 🔥 Interactive Mode
+
+> **New in v5.0.** Browse any repository's file tree in your terminal and cherry-pick exactly the files and folders you want.
+
+```sh
+npx gitpick owner/repo -i
+npx gitpick owner/repo -i -b canary
+npx gitpick https://github.com/owner/repo -i
+npx gitpick https://gitlab.com/owner/repo -i
+```
+
+<img width="720" alt="Interactive Mode" src="https://github.com/user-attachments/assets/9d6f4db7-ed84-4783-b815-0267719b3a52" />
+
+Navigate with arrow keys, select with space, expand/collapse with enter, `.` to select all, `c` to confirm. Works with GitHub, GitLab, Bitbucket, public and private repos.
+
+---
+
+## 🔐 Private Repos
+
+Use a personal access token with read-only contents permission. Works with GitHub, GitLab and Bitbucket:
+
+```sh
+npx gitpick https://<token>@github.com/owner/repo
+npx gitpick https://<token>@gitlab.com/owner/repo
+npx gitpick https://<token>@bitbucket.org/owner/repo
+```
+
+Or use environment variables (recommended for CI):
+
+```sh
+export GITHUB_TOKEN=ghp_xxxx    # or GH_TOKEN
+export GITLAB_TOKEN=glpat-xxxx
+export BITBUCKET_TOKEN=xxxx
+
+npx gitpick owner/private-repo  # token is picked up automatically
+```
+
+Create a GitHub token 👉 [here](https://github.com/settings/personal-access-tokens/new) with `repo -> contents: read-only` permission.
+
+---
+
+## 📋 Config File
+
+Create a `.gitpick.json` or `.gitpick.jsonc` in your project to pick multiple files/folders in one command:
+
+```jsonc
+// .gitpick.jsonc
+[
+  // clone a repo without .git
+  "owner/repo",
+  "https://github.com/owner/repo",
+  // clone a folder aka tree
+  "owner/repo/tree/main/path/to/folder",
+  "https://github.com/owner/repo/tree/main/path/to/folder",
+  // clone a file aka blob
+  "owner/repo/blob/main/path/to/file",
+  "https://github.com/owner/repo/blob/main/path/to/file",
+  // clone a branch
+  "owner/repo -b canary",
+  "https://github.com/owner/repo -b canary",
+  "owner/repo/tree/canary",
+  "https://github.com/owner/repo/tree/canary",
+  // clone a commit SHA
+  "owner/repo -b cc8e93",
+  "https://github.com/owner/repo/commit/cc8e93",
+  // clone submodules
+  "owner/repo -r",
+  "https://github.com/owner/repo -r",
+  // clone a private repo
+  "https://<token>@github.com/owner/repo",
+  // GitLab
+  "https://gitlab.com/owner/repo",
+  "https://gitlab.com/owner/repo/-/tree/main/path/to/folder",
+  // Bitbucket
+  "https://bitbucket.org/owner/repo",
+  "https://bitbucket.org/owner/repo/src/main/path/to/folder",
+]
+```
+
+Then just run:
+
+```sh
+npx gitpick
+```
+
+Each entry follows the same `<url> [target]` syntax as the CLI. All entries are cloned with `-o` (overwrite) by default.
+
+---
