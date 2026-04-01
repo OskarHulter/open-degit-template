@@ -7,8 +7,10 @@
 
 ## Plugins
 
-<https://github.com/yazi-rs/plugins/blob/main/smart-paste.yazi/README.md>
-<https://github.com/yazi-rs/plugins/blob/main/smart-enter.yazi/README.md>
+- [smart-paste]<https://github.com/yazi-rs/plugins/blob/main/smart-paste.yazi/README.md>
+- [smart-enter]<https://github.com/yazi-rs/plugins/blob/main/smart-enter.yazi/README.md>
+- [clippy]<https://github.com/gallardo994/clippy.yazi?tab=readme-ov-file>
+- [duckDb]<https://github.com/wylie102/duckdb.yazi?tab=readme-ov-file>
 
 ## Themes
 
