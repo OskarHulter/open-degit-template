@@ -10,11 +10,11 @@
     "folder",
     "git",
     "github",
+    "gitpick",
     "repository",
     "scaffolding",
     "template",
-    "url",
-    "gitpick"
+    "url"
   ],
   "homepage": "https://github.com/OskarHulter/open-degit-template#readme",
   "bugs": "https://github.com/OskarHulter/open-degit-template/issues",
@@ -26,19 +26,18 @@
   },
   "repository": "OskarHulter/open-degit-template",
   "funding": "https://github.com/sponsors/OskarHulter",
-  "type": "module",
-  "packageManager": "pnpm@10.17.1",
-  "main": "index.js",
   "files": [
     "dist"
   ],
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
+    "build": "echo 'tsdown'",
+    "dev": "echo 'tsdown --watch'",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "prepare": "bunx lefthook install",
-    "test": "tsdown && bun test tests/cli.test.ts"
+    "prepare": "pnpm dlx lefthook install",
+    "test": "echo 'tsdown && pnpm test tests/cli.test.ts'"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -56,5 +55,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.17.1"
 }

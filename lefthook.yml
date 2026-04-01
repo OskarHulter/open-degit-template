@@ -1,0 +1,11 @@
+pre-commit:
+  piped: true
+  commands:
+    lint-staged:
+      run: pnpm dlx lint-staged --verbose
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm dlx commitlint --edit {1}
